@@ -15,11 +15,11 @@ namespace CombatAI.Game.Characters
         [FoldoutGroup("Parameters/Costs")] [SerializeField] private float _jumpCost;
         [FoldoutGroup("Parameters/Costs")] [SerializeField] private float _dashCost;
 
-        public float jumpCost => _jumpCost;
-        public float dashCost => _dashCost;
-
         [Title("References")]
         [SerializeField] private Slider _characterStaminaSlider;
+
+        public float jumpCost => _jumpCost;
+        public float dashCost => _dashCost;
 
         public float currentStamina
         {
@@ -29,6 +29,13 @@ namespace CombatAI.Game.Characters
                 _currentStamina = value;
                 _characterStaminaSlider.value = value;
             }
+        }
+
+        private Animator _animator;
+
+        private void Awake()
+        {
+            _animator = _characterStaminaSlider.GetComponentInParent<Animator>();
         }
 
         private void Start()
@@ -63,7 +70,12 @@ namespace CombatAI.Game.Characters
 
         public bool EnoughStamina(float requiredStaminaAmount)
         {
-            return (_currentStamina >= requiredStaminaAmount);
+            bool enoughStamina = (_currentStamina >= requiredStaminaAmount);
+
+            if (!enoughStamina)
+                _animator.SetTrigger("NoStamina");
+
+            return enoughStamina;
         }
     }
 }
