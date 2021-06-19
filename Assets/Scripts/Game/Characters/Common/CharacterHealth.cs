@@ -32,10 +32,14 @@ namespace CombatAI.Game.Characters
         }
 
         private Animator _animator;
+        private Rigidbody2D _rigidbody2D;
+        private CharacterMovement _characterMovement;
 
         private void Awake()
         {
             _animator = GetComponentInChildren<Animator>();
+            _rigidbody2D = GetComponentInChildren<Rigidbody2D>();
+            _characterMovement = GetComponentInChildren<CharacterMovement>();
         }
 
         private void Start()
@@ -65,7 +69,17 @@ namespace CombatAI.Game.Characters
 
         private void Death()
         {
+            _characterMovement.canMove = false;
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.isKinematic = true;
+            GetComponentInChildren<DamageOnCollision>().doDamage = false;
 
+            do
+            {
+                transform.Translate(Vector3.down * Time.deltaTime);
+            } while (transform.position.y > -1.35f);
+
+            _animator.SetTrigger("Death");
         }
     }
 }
