@@ -47,8 +47,8 @@ namespace CombatAI.Game.Characters
             {
                 _grounded = value;
                 _animator.SetBool("Grounded", value);
-                if (!value)
-                    _visuals.localScale = new Vector3(Mathf.Sign(_rigidbody2D.velocity.x), _visuals.localScale.y);
+                /*if (!value)
+                    _visuals.localScale = new Vector3(Mathf.Sign(_rigidbody2D.velocity.x), _visuals.localScale.y);*/
             }
         }
 

@@ -55,6 +55,9 @@ namespace CombatAI.Game.Characters
 
         public void TakeDamage(float amount)
         {
+            if (currentHealth <= 0)
+                return;
+
             currentHealth -= amount;
             _animator.SetTrigger("Hit");
 
