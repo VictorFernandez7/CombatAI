@@ -9,11 +9,14 @@ namespace CombatAI.Game.Characters.Player
     {
         private void Update()
         {
-            if (Input.GetButton("AttackDown"))
-                Attack(Data.Attacks.Types.AttackDown);
+            if (!attacking)
+            {
+                if (Input.GetButton("AttackDown"))
+                    Attack(Data.Attacks.Types.AttackDown);
 
-            if (Input.GetButton("AttackUp"))
-                Attack(Data.Attacks.Types.AttackUp);
+                if (Input.GetButton("AttackUp"))
+                    Attack(Data.Attacks.Types.AttackUp);
+            }
         }
     }
 }

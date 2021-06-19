@@ -13,12 +13,24 @@ namespace CombatAI.Game.Characters
         [FoldoutGroup("Parameters/Attacks Duration")] [SerializeField] private float _attackDownDuration;
         [FoldoutGroup("Parameters/Attacks Duration")] [SerializeField] private float _attackUpDuration;
 
+        public bool attacking
+        {
+            get => _attacking;
+            set
+            {
+                _attacking = value;
+                _characterMovement.canMove = value;
+            }
+        }
+
         private bool _attacking;
         private Animator _animator;
+        private CharacterMovement _characterMovement;
 
         public virtual void Awake()
         {
             _animator = GetComponentInChildren<Animator>();
+            _characterMovement = GetComponent<CharacterMovement>();
         }
 
         public virtual void Attack(Attacks.Types attackType)
