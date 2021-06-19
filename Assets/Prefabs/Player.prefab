@@ -73,9 +73,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -93,17 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fefb9337f1762544bd55562b534ad6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementAcceleration: 50
-  _maxMoveSpeed: 5
-  _groundLinearDrag: 20
-  _jumpForce: 10
-  _fallMultiplier: 8
-  _lowJumpFallMultiplier: 5
-  _airLinearDrag: 2.5
-  _groundRaycastLength: 0.9
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  _movementSpeed: 5
+  _jumpForce: 12
+  _jumpDirection: {x: 1.5, y: 2}
 --- !u!1 &4415732098611571936
 GameObject:
   m_ObjectHideFlags: 0

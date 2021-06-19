@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 1431455017}
   - component: {fileID: 1431455016}
   m_Layer: 6
-  m_Name: Quad
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,7 +389,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99999994, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!23 &1431455017
 MeshRenderer:
@@ -449,7 +449,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1445170065}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -515,11 +515,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5098906013335297749, guid: 1b1e8d1039f424a48b9370424ee58609, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.47
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5098906013335297749, guid: 1b1e8d1039f424a48b9370424ee58609, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.13
+      value: -1.15
       objectReference: {fileID: 0}
     - target: {fileID: 5098906013335297749, guid: 1b1e8d1039f424a48b9370424ee58609, type: 3}
       propertyPath: m_LocalPosition.z
@@ -572,11 +572,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1321000784626444692, guid: 2dc9df3e438dd63418e4624733e39159, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1435566
+      value: -2.42
       objectReference: {fileID: 0}
     - target: {fileID: 1321000784626444692, guid: 2dc9df3e438dd63418e4624733e39159, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7335508
+      value: -1.15
       objectReference: {fileID: 0}
     - target: {fileID: 1321000784626444692, guid: 2dc9df3e438dd63418e4624733e39159, type: 3}
       propertyPath: m_LocalPosition.z
