@@ -19,9 +19,9 @@ namespace CombatAI.Game.Characters.Player
             {
                 _horizontalDirection = value;
                 _animator.SetFloat("Speed", Mathf.Abs(value));
-                if (value != 0)
+                if (value != 0 && grounded)
                 {
-                    _visuals.localScale = new Vector3(Mathf.Sign(value), _visuals.localScale.y, _visuals.localScale.z);
+                    _visuals.localScale = new Vector3(Mathf.Sign(value), _visuals.localScale.y);
                     if (Mathf.Sign(_jumpDirection.x) != Mathf.Sign(value))
                         _jumpDirection = new Vector2(_jumpDirection.x * -1, _jumpDirection.y);
                 }
@@ -34,7 +34,10 @@ namespace CombatAI.Game.Characters.Player
             set
             {
                 _grounded = value;
+                _canMove = value;
                 _animator.SetBool("Grounded", value);
+                if (!value)
+                    _visuals.localScale = new Vector3(Mathf.Sign(_rigidbody2D.velocity.x), _visuals.localScale.y);
             }
         }
 
@@ -54,14 +57,14 @@ namespace CombatAI.Game.Characters.Player
 
         private void Update()
         {
-            horizontalDirection = GetInput().x;
-
             if (Input.GetButtonDown("Jump") && grounded)
                 Jump();
         }
 
         private void FixedUpdate()
         {
+            horizontalDirection = GetInput().x;
+
             if (_canMove)
                 Move();
         }
@@ -69,19 +72,13 @@ namespace CombatAI.Game.Characters.Player
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
-            {
                 grounded = true;
-                _canMove = true;
-            }
         }
 
         private void OnCollisionExit2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
-            {
                 grounded = false;
-                _canMove = false;
-            }
         }
 
         #region Horizontal Movement
