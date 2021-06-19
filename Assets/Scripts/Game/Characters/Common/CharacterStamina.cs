@@ -14,6 +14,8 @@ namespace CombatAI.Game.Characters
         [FoldoutGroup("Parameters/Main")] [SerializeField] private float _staminaRegenerationRate;
         [FoldoutGroup("Parameters/Costs")] [SerializeField] private float _jumpCost;
         [FoldoutGroup("Parameters/Costs")] [SerializeField] private float _dashCost;
+        [FoldoutGroup("Parameters/Costs")] [SerializeField] private float _blockCost;
+        [FoldoutGroup("Parameters/Costs")] [SerializeField] private float _attackCost;
 
         [Title("References")]
         [SerializeField] private Slider _characterStaminaSlider;

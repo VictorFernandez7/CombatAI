@@ -7,5 +7,13 @@ namespace CombatAI.Game.Characters.Player
 {
     public class PlayerAttack : CharacterAttack
     {
+        private void Update()
+        {
+            if (Input.GetButton("AttackDown"))
+                Attack(Data.Attacks.Types.AttackDown);
+
+            if (Input.GetButton("AttackUp"))
+                Attack(Data.Attacks.Types.AttackUp);
+        }
     }
 }

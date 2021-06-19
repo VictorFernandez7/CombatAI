@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3554925848939259330}
   - component: {fileID: 986483283112590865}
   - component: {fileID: 1463860916830688328}
+  - component: {fileID: 5631488423809127121}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -134,8 +135,24 @@ MonoBehaviour:
   _staminaRegenerationRate: 2.5
   _jumpCost: 25
   _dashCost: 15
+  _blockCost: 0
+  _attackCost: 0
   _characterStaminaSlider: {fileID: 0}
   _noStaminaVFX: {fileID: 256335092536212621}
+--- !u!114 &5631488423809127121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3554925848939259331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97635eb8945b80541a848397701b003d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackDownDuration: 0.5
+  _attackUpDuration: 0.5
 --- !u!1 &4087760845612490458
 GameObject:
   m_ObjectHideFlags: 0
