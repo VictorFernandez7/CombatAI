@@ -49,6 +49,7 @@ namespace CombatAI.Game.Characters
         public virtual IEnumerator AttackProcess(string animatorParameter, float attackDuration)
         {
             _attacking = true;
+            _animator.SetFloat("RandomAttackDown", (int)Random.Range(0, 2));
             _animator.SetBool(animatorParameter, true);
 
             yield return new WaitForSeconds(attackDuration);
@@ -56,5 +57,7 @@ namespace CombatAI.Game.Characters
             _attacking = false;
             _animator.SetBool(animatorParameter, false);
         }
+
+
     }
 }

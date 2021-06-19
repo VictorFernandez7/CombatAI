@@ -9,7 +9,7 @@ namespace CombatAI.Game.Characters
     {
         [Title("Parameters")]
         [SerializeField] private float _damage = 10f;
-        [SerializeField] private float _impulseForce = 5f;
+        [SerializeField] private float _impulseForce = 3.5f;
         [SerializeField] private Vector2 _impulseDirection = new Vector2(1.5f, 1.5f);
 
         private void OnTriggerEnter2D(Collider2D collision)

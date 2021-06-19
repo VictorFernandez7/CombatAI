@@ -42,7 +42,7 @@ namespace CombatAI.Game.Characters
         } 
         #endregion
 
-        private bool _canRegenerate;
+        private bool _canRegenerate = true;
         private Animator _animator;
 
         private void Awake()

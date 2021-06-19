@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CombatAI.Game.Characters.AI
 {
-    public class AIMovement : CharacterMovement
+    public class AIAttack : CharacterAttack
     {
 
     }
