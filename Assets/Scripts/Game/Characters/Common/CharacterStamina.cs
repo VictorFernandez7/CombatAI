@@ -21,8 +21,15 @@ namespace CombatAI.Game.Characters
         [SerializeField] private Slider _characterStaminaSlider;
         [SerializeField] private ParticleSystem _noStaminaVFX;
 
+        #region Properties
         public float jumpCost => _jumpCost;
         public float dashCost => _dashCost;
+
+        public bool canRegenerate
+        {
+            get => _canRegenerate;
+            set { _canRegenerate = value; }
+        }
 
         public float currentStamina
         {
@@ -32,8 +39,10 @@ namespace CombatAI.Game.Characters
                 _currentStamina = value;
                 _characterStaminaSlider.value = value;
             }
-        }
+        } 
+        #endregion
 
+        private bool _canRegenerate;
         private Animator _animator;
 
         private void Awake()
@@ -48,7 +57,8 @@ namespace CombatAI.Game.Characters
 
         private void Update()
         {
-            StaminaRegeneration();
+            if (canRegenerate)
+                StaminaRegeneration();
         }
 
         private void SetSliderValues()

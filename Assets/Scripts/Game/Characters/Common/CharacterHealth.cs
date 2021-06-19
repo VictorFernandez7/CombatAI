@@ -9,8 +9,8 @@ namespace CombatAI.Game.Characters
     public class CharacterHealth : MonoBehaviour
     {
         [Title("Parameters")]
-        [SerializeField] private float _maxHealth;
-        [SerializeField] private float _currentHealth;
+        [SerializeField] private float _maxHealth = 100f;
+        [SerializeField] private float _currentHealth = 100f;
 
         [Title("References")]
         [SerializeField] private Slider _characterHealthSlider;
