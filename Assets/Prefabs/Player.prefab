@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1734295008760178901}
   - component: {fileID: 1913001422990253302}
   - component: {fileID: 3554925848939259330}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -96,6 +96,9 @@ MonoBehaviour:
   _movementSpeed: 5
   _jumpForce: 12
   _jumpDirection: {x: 1.5, y: 2}
+  _jumpLinearDrag: 1
+  _dashForce: 12
+  _dashLinearDrag: 2.5
 --- !u!1 &4415732098611571936
 GameObject:
   m_ObjectHideFlags: 0

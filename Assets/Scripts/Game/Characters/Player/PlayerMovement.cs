@@ -7,11 +7,15 @@ namespace CombatAI.Game.Characters.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Title("Parameters")]
-        [SerializeField] private float _movementSpeed = 5f;
-        [SerializeField] private float _jumpForce = 5f;
-        [SerializeField] private Vector2 _jumpDirection;
+        [TitleGroup("Parameters")]
+        [FoldoutGroup("Parameters/Movement")] [SerializeField] private float _movementSpeed = 5f;
+        [FoldoutGroup("Parameters/Jump")][SerializeField] private float _jumpForce = 5f;
+        [FoldoutGroup("Parameters/Jump")] [SerializeField] private Vector2 _jumpDirection;
+        [FoldoutGroup("Parameters/Jump")] [SerializeField] private float _jumpLinearDrag = 1f;
+        [FoldoutGroup("Parameters/Dash")] [SerializeField] private float _dashForce = 5f;
+        [FoldoutGroup("Parameters/Dash")] [SerializeField] private float _dashLinearDrag = 2.5f;
 
+        #region Properties
         public float horizontalDirection
         {
             get => _horizontalDirection;
@@ -19,7 +23,7 @@ namespace CombatAI.Game.Characters.Player
             {
                 _horizontalDirection = value;
                 _animator.SetFloat("Speed", Mathf.Abs(value));
-                if (value != 0 && grounded)
+                if (value != 0 && grounded && !_dashing)
                 {
                     _visuals.localScale = new Vector3(Mathf.Sign(value), _visuals.localScale.y);
                     if (Mathf.Sign(_jumpDirection.x) != Mathf.Sign(value))
@@ -34,14 +38,25 @@ namespace CombatAI.Game.Characters.Player
             set
             {
                 _grounded = value;
-                _canMove = value;
                 _animator.SetBool("Grounded", value);
                 if (!value)
                     _visuals.localScale = new Vector3(Mathf.Sign(_rigidbody2D.velocity.x), _visuals.localScale.y);
             }
         }
 
+        public bool dashing
+        {
+            get => _dashing;
+            set
+            {
+                _dashing = value;
+                _animator.SetBool("Dashing", value);
+            }
+        } 
+        #endregion
+
         private bool _canMove;
+        private bool _dashing;
         private bool _grounded;
         private float _horizontalDirection;
         private Animator _animator;
@@ -57,28 +72,37 @@ namespace CombatAI.Game.Characters.Player
 
         private void Update()
         {
+            if (_canMove)
+                Move();
+
             if (Input.GetButtonDown("Jump") && grounded)
                 Jump();
+
+            if (Input.GetButtonDown("Dash") && _grounded && !_dashing)
+                StartCoroutine(Dash());
         }
 
         private void FixedUpdate()
         {
             horizontalDirection = GetInput().x;
-
-            if (_canMove)
-                Move();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+            {
                 grounded = true;
+                _canMove = true;
+            }
         }
 
         private void OnCollisionExit2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+            {
                 grounded = false;
+                _canMove = false;
+            }
         }
 
         #region Horizontal Movement
@@ -93,9 +117,25 @@ namespace CombatAI.Game.Characters.Player
         }
         #endregion
 
+        #region Dash
+        private IEnumerator Dash()
+        {
+            dashing = true;
+            _canMove = false;
+            _rigidbody2D.drag = _dashLinearDrag;
+            _rigidbody2D.AddForce(Vector2.right * Mathf.Sign(_visuals.localScale.x) * _dashForce, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(0.75f);
+
+            dashing = false;
+            _canMove = true;
+        }
+        #endregion
+
         #region Jump
         private void Jump()
         {
+            _rigidbody2D.drag = _jumpLinearDrag;
             _rigidbody2D.AddForce(_jumpDirection.normalized * _jumpForce, ForceMode2D.Impulse);
         }
         #endregion
