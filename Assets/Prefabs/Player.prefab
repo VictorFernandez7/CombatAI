@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1734295008760178901}
   - component: {fileID: 1913001422990253302}
   - component: {fileID: 3554925848939259330}
+  - component: {fileID: 986483283112590865}
+  - component: {fileID: 1463860916830688328}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -99,6 +101,37 @@ MonoBehaviour:
   _jumpLinearDrag: 1
   _dashForce: 12
   _dashLinearDrag: 2.5
+--- !u!114 &986483283112590865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3554925848939259331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d902f6d18852e409fd2800bbb24332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 100
+  _characterHealthSlider: {fileID: 0}
+--- !u!114 &1463860916830688328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3554925848939259331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38702aceab662f4cb357cdb2885bde5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxStamina: 50
+  _currentStamina: 50
+  _staminaRegenerationRate: 2.5
+  _characterStaminaSlider: {fileID: 0}
 --- !u!1 &4415732098611571936
 GameObject:
   m_ObjectHideFlags: 0

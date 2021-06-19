@@ -62,12 +62,14 @@ namespace CombatAI.Game.Characters.Player
         private Animator _animator;
         private Transform _visuals;
         private Rigidbody2D _rigidbody2D;
+        private CharacterStamina _characterStamina;
 
         private void Awake()
         {
             _animator = GetComponentInChildren<Animator>();
             _visuals = _animator.transform;
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _characterStamina = GetComponent<CharacterStamina>();
         }
 
         private void Update()
@@ -75,11 +77,17 @@ namespace CombatAI.Game.Characters.Player
             if (_canMove)
                 Move();
 
-            if (Input.GetButtonDown("Jump") && grounded)
-                Jump();
+            if (Input.GetButtonDown("Jump") && grounded) // CHECK INPUT
+            {
+                if (_characterStamina.EnoughStamina(_characterStamina.jumpCost)) // CHECK STAMINA
+                    Jump();
+            }
 
-            if (Input.GetButtonDown("Dash") && _grounded && !_dashing)
-                StartCoroutine(Dash());
+            if (Input.GetButtonDown("Dash") && _grounded && !_dashing) // CHECK INPUT
+            {
+                if (_characterStamina.EnoughStamina(_characterStamina.dashCost)) // CHECK STAMINA
+                    StartCoroutine(Dash());
+            }
         }
 
         private void FixedUpdate()
@@ -124,6 +132,7 @@ namespace CombatAI.Game.Characters.Player
             _canMove = false;
             _rigidbody2D.drag = _dashLinearDrag;
             _rigidbody2D.AddForce(Vector2.right * Mathf.Sign(_visuals.localScale.x) * _dashForce, ForceMode2D.Impulse);
+            _characterStamina.UseStamina(_characterStamina.dashCost);
 
             yield return new WaitForSeconds(0.75f);
 
@@ -137,6 +146,7 @@ namespace CombatAI.Game.Characters.Player
         {
             _rigidbody2D.drag = _jumpLinearDrag;
             _rigidbody2D.AddForce(_jumpDirection.normalized * _jumpForce, ForceMode2D.Impulse);
+            _characterStamina.UseStamina(_characterStamina.jumpCost);
         }
         #endregion
 

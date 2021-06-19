@@ -5,8 +5,7 @@ using UnityEngine;
 
 namespace CombatAI.Game.Characters.Player
 {
-    public class PlayerAttack : MonoBehaviour
+    public class PlayerAttack : CharacterAttack
     {
-
     }
 }
