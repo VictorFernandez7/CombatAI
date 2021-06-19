@@ -21,8 +21,8 @@ namespace CombatAI.Game.Characters.Player
                 _animator.SetFloat("Speed", Mathf.Abs(value));
                 if (value != 0)
                 {
-                    _visuals.localScale = new Vector3(value, _visuals.localScale.y, _visuals.localScale.z);
-                    if (Mathf.Sign(_jumpDirection.x) != value)
+                    _visuals.localScale = new Vector3(Mathf.Sign(value), _visuals.localScale.y, _visuals.localScale.z);
+                    if (Mathf.Sign(_jumpDirection.x) != Mathf.Sign(value))
                         _jumpDirection = new Vector2(_jumpDirection.x * -1, _jumpDirection.y);
                 }
             }
