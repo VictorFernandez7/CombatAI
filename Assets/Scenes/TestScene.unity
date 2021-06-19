@@ -931,9 +931,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1026,12 +1026,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38702aceab662f4cb357cdb2885bde5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxStamina: 0
-  _currentStamina: 0
-  _staminaRegenerationRate: 0
+  _maxStamina: 50
+  _currentStamina: 50
+  _staminaRegenerationRate: 2.5
   _jumpCost: 0
   _dashCost: 0
-  _blockCost: 0
   _attackCost: 0
   _characterStaminaSlider: {fileID: 1162303442}
   _noStaminaVFX: {fileID: 0}
@@ -2999,10 +2998,9 @@ MonoBehaviour:
   _maxStamina: 50
   _currentStamina: 50
   _staminaRegenerationRate: 2.5
-  _jumpCost: 25
-  _dashCost: 15
-  _blockCost: 0
-  _attackCost: 0
+  _jumpCost: 15
+  _dashCost: 5
+  _attackCost: 5
   _characterStaminaSlider: {fileID: 416856923}
   _noStaminaVFX: {fileID: 8502248801579943228}
 --- !u!4 &7216317338026790949

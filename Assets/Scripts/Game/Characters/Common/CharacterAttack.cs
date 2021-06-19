@@ -13,6 +13,7 @@ namespace CombatAI.Game.Characters
         [FoldoutGroup("Parameters/Attacks Duration")] [SerializeField] private float _attackDownDuration;
         [FoldoutGroup("Parameters/Attacks Duration")] [SerializeField] private float _attackUpDuration;
 
+        #region Properties
         public bool attacking
         {
             get => _attacking;
@@ -23,16 +24,32 @@ namespace CombatAI.Game.Characters
             }
         }
 
+        public bool blocking
+        {
+            get => _blocking;
+            set
+            {
+                _blocking = value;
+                _characterMovement.canMove = !value;
+                _characterStamina.canRegenerate = !value;
+            }
+        } 
+        #endregion
+
+        private bool _blocking;
         private bool _attacking;
         private Animator _animator;
+        private CharacterStamina _characterStamina;
         private CharacterMovement _characterMovement;
 
         public virtual void Awake()
         {
             _animator = GetComponentInChildren<Animator>();
+            _characterStamina = GetComponent<CharacterStamina>();
             _characterMovement = GetComponent<CharacterMovement>();
         }
 
+        #region Attack
         public virtual void Attack(Attacks.Types attackType)
         {
             switch (attackType)
@@ -57,7 +74,38 @@ namespace CombatAI.Game.Characters
             _attacking = false;
             _animator.SetBool(animatorParameter, false);
         }
+        #endregion
 
+        #region Block
+        public virtual void StartBlock(Blocks.Types blockType)
+        {
+            blocking = true;
 
+            switch (blockType)
+            {
+                case Blocks.Types.BlockDown:
+                    _animator.SetBool("BlockingDown", true);
+                    break;
+                case Blocks.Types.BlockUp:
+                    _animator.SetBool("BlockingUp", true);
+                    break;
+            }
+        }
+
+        public virtual void EndBlock(Blocks.Types blockType)
+        {
+            blocking = false;
+
+            switch (blockType)
+            {
+                case Blocks.Types.BlockDown:
+                    _animator.SetBool("BlockingDown", false);
+                    break;
+                case Blocks.Types.BlockUp:
+                    _animator.SetBool("BlockingUp", false);
+                    break;
+            }
+        } 
+        #endregion
     }
 }
