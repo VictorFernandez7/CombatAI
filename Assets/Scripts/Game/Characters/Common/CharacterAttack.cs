@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using System.Collections;
+using EZCameraShake;
 using UnityEngine;
 
 using CombatAI.Data;
@@ -12,6 +13,11 @@ namespace CombatAI.Game.Characters
         [TitleGroup("Parameters")]
         [FoldoutGroup("Parameters/Attacks Duration")] [SerializeField] private float _attackDownDuration;
         [FoldoutGroup("Parameters/Attacks Duration")] [SerializeField] private float _attackUpDuration;
+
+        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _magnitude = 4f;
+        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _roughness = 4f;
+        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _fadeInTime = 0.1f;
+        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _fadeOutTime = 1f;
 
         #region Properties
         public bool attacking
@@ -61,6 +67,9 @@ namespace CombatAI.Game.Characters
                     StartCoroutine(AttackProcess("AttackingUp", _attackUpDuration));
                     break;
             }
+
+            _characterStamina.UseStamina(_characterStamina.attackCost);
+            CameraShaker.Instance.ShakeOnce(_magnitude, _roughness, _fadeInTime, _fadeOutTime);
         }
 
         public virtual IEnumerator AttackProcess(string animatorParameter, float attackDuration)
