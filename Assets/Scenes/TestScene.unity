@@ -2267,21 +2267,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1463860916830688328, guid: 2dc9df3e438dd63418e4624733e39159, type: 3}
-      propertyPath: _dashCost
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1463860916830688328, guid: 2dc9df3e438dd63418e4624733e39159, type: 3}
-      propertyPath: _jumpCost
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1463860916830688328, guid: 2dc9df3e438dd63418e4624733e39159, type: 3}
       propertyPath: _characterStaminaSlider
       value: 
       objectReference: {fileID: 416856923}
-    - target: {fileID: 3554925848939259330, guid: 2dc9df3e438dd63418e4624733e39159, type: 3}
-      propertyPath: _groundLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 3554925848939259331, guid: 2dc9df3e438dd63418e4624733e39159, type: 3}
       propertyPath: m_Name
       value: Player

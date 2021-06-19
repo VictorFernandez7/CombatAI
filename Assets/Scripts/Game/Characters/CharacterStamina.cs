@@ -17,6 +17,7 @@ namespace CombatAI.Game.Characters
 
         [Title("References")]
         [SerializeField] private Slider _characterStaminaSlider;
+        [SerializeField] private ParticleSystem _noStaminaVFX;
 
         public float jumpCost => _jumpCost;
         public float dashCost => _dashCost;
@@ -73,7 +74,11 @@ namespace CombatAI.Game.Characters
             bool enoughStamina = (_currentStamina >= requiredStaminaAmount);
 
             if (!enoughStamina)
+            {
                 _animator.SetTrigger("NoStamina");
+                _noStaminaVFX.Stop();
+                _noStaminaVFX.Play();
+            }
 
             return enoughStamina;
         }
