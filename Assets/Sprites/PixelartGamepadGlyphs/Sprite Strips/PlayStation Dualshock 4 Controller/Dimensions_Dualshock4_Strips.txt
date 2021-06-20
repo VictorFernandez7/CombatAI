@@ -1,0 +1,78 @@
+
+- Dimensions of Switch Pro Images - 
+
+Image Size:
+Indicates the full width and height of the images in the strip in pixels. Import into projects at this size.
+
+gp_ps_dpad_dark                   64x64px   (5 images)
+	
+gp_ps_dpad_light                  64x64px   (5 images)
+	
+gp_ps_face_all                    256x64px  (5 images)
+	
+gp_ps_face_all_simple             64x64px   (5 images)
+	
+gp_ps_face_circle                 32x32px   (2 images)
+	
+gp_ps_face_square                 32x32px   (2 images)
+	
+gp_ps_face_triangle               32x32px   (2 images)
+	
+gp_ps_face_x                      32x32px   (2 images)
+	
+gp_ps_options                     32x32px   (1 image)
+	
+gp_ps_options_blank               32x32px   (1 image)
+	
+gp_ps_playstation_home            32x32px   (1 image)
+	
+gp_ps_share                       32x32px   (1 image)
+	
+gp_ps_shoulder_l1                 32x32px   (1 image)
+	
+gp_ps_shoulder_l2                 32x32px   (1 image)
+	
+gp_ps_shoulder_r1                 32x32px   (1 image)
+	
+gp_ps_shoulder_r2                 32x32px   (1 image)
+	
+gp_ps_stick_left                  32x32px   (2 images)
+	
+gp_ps_stick_left_press            32x32px   (2 images)
+	
+gp_ps_stick_right                 32x32px   (2 images)
+	
+gp_ps_stick_right_press           32x32px   (2 images)
+
+gp_ps_touchpad                    128x64px  (1 image)
+
+gp_ps_touchpad_press              128x64px  (1 image)
+
+gp_ps_touchpad_press_left         128x64px  (1 image)
+
+gp_ps_touchpad_press_right        128x64px  (1 image)
+
+gp_ps_touchpad_swipe_down         128x64px  (2 images)
+
+gp_ps_touchpad_swipe_horizontal   128x64px  (1 image)
+
+gp_ps_touchpad_swipe_left         128x64px  (2 images)
+
+gp_ps_touchpad_swipe_right        128x64px  (2 images)
+
+gp_ps_touchpad_swipe_up           128x64px  (2 images)
+
+gp_ps_touchpad_swipe_vertical     128x64px  (1 image)
+
+
+
+
+
+
+
+
+
+
+
+
+	

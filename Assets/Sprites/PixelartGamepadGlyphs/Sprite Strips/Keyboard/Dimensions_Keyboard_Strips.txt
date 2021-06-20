@@ -1,0 +1,38 @@
+
+- Dimensions of Keyboard Images - 
+
+Image Size:
+Indicates the full width and height of the images in the strip in pixels. Import into projects at this size.
+
+ALL KEYS EXCEPT THE ONES SPECIFIED ARE          32x32px     (2 images)
+
+key_alt                                         48x32px     (2 images)
+
+key_backspace                                   48x32px     (2 images)
+
+key_control                                     48x32px     (2 images)
+
+key_enter                                       48x32px     (2 images)
+
+key_extra_wide                                  64x32px     (2 images)
+
+key_shift                                       48x32px     (2 images)
+
+key_space                                       64x32px     (2 images)
+
+key_tab                                         48x32px     (2 images)
+
+key_wide                                        48x32px     (2 images)
+
+mouse_button_left_dark                          64x64px     (2 images)
+
+mouse_button_left_light                         64x64px     (2 images)
+
+mouse_button_middle_dark                        64x64px     (2 images)
+
+mouse_button_middle_light                       64x64px     (2 images)
+
+mouse_button_right_dark                         64x64px     (2 images)
+
+mouse_button_right_light                        64x64px     (2 images)
+

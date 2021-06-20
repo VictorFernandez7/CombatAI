@@ -1,0 +1,21 @@
+
+- Dimensions of Full Controller Images - 
+
+Image Size:
+Indicates the full width and height of the items within each strip. Import into projects at this size.
+
+full_controller_images_*               320x320px      (1 image each)
+
+strip_dual_joycons                     320x320px      (5 images)
+
+strip_left_joycon_horizontal           192x96px       (5 images)
+
+strip_left_joycon_vertical             96x192px       (5 images)
+
+strip_right_joycon_horizontal_rotated  192x96px       (5 images)
+
+strip_right_joycon_horizontal          192x96px       (5 images)
+
+strip_right_joycon_vertical            96x192px       (5 images)
+
+----------------------------------------

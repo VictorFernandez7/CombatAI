@@ -1,0 +1,40 @@
+
+- Dimensions of Full Controller Images - 
+
+Image Size:
+Indicates the full width and height of the .png image in pixels. Import into projects at this size.
+
+full_controller_images_*               320x320px
+
+left_joycon_horizontal(1-5)            192x96px
+
+left_joycon_vertical(1-5)              96x192px
+
+right_joycon_horizontal_rotated(1-5)   192x96px
+
+right_joycon_horizontal(1-5)           192x96px
+
+right_joycon_vertical(1-5)             96x192px
+
+----------------------------------------
+	
+Sprite Size:
+Indicates the exact dimensions of the image that will be displayed in a project if unaltered. (Image Size without margins)
+
+full_controller_images_dualshock4      236x153px
+
+full_controller_images_xbox_one        232x152px
+	
+full_controller_images_switch_pro      230x147px
+
+full_controller_images_dual_joycons_*  194x162px
+
+left_joycon_horizontal(1-5)            162x82px
+
+left_joycon_vertical(1-5)              82x162px
+
+right_joycon_horizontal_rotated(1-5)   162x82px
+
+right_joycon_horizontal(1-5)           162x82px
+
+right_joycon_vertical(1-5)             82x162px
