@@ -75,7 +75,13 @@ namespace CombatAI.Game.Characters
             _characterMovement.canMove = false;
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.isKinematic = true;
-            GetComponentInChildren<DamageOnCollision>().doDamage = false;
+
+            Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].enabled = false;
+            }
 
             do
             {

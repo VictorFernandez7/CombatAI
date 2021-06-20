@@ -135,7 +135,7 @@ namespace CombatAI.Game.Characters.AI
             playerDirection = _player.position.x > transform.position.x ? 1 : -1;
             _distanceToPlayer = Vector2.Distance(transform.position, _player.position);
 
-            if (!_ignoreLook)
+            if (!_ignoreLook && _characterHealth.currentHealth > 0f)
                 _visuals.localScale = new Vector2(playerDirection, _visuals.localScale.y);
         }
         #endregion
