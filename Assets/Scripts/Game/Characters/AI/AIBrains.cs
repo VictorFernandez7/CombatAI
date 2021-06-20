@@ -184,7 +184,7 @@ namespace CombatAI.Game.Characters.AI
                     _characterMovement.Jump();
 
                 else
-                    _characterMovement.Dash();
+                    StartCoroutine(_characterMovement.Dash());
 
                 performingAction = false;
             }

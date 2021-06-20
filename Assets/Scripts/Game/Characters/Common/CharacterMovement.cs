@@ -138,6 +138,8 @@ namespace CombatAI.Game.Characters
         public virtual void Jump()
         {
             _rigidbody2D.drag = _jumpLinearDrag;
+            if (Mathf.Sign(_jumpDirection.x) != Mathf.Sign(visuals.localScale.x))
+                _jumpDirection = new Vector2(-_jumpDirection.x, _jumpDirection.y);
             _rigidbody2D.AddForce(_jumpDirection.normalized * _jumpForce, ForceMode2D.Impulse);
             _characterStamina.UseStamina(_characterStamina.jumpCost);
         }
