@@ -56,6 +56,7 @@ namespace CombatAI.Game.Characters
         private bool _blockingUp;
         private bool _blockingDown;
         private Animator _animator;
+        private CharacterHealth _characterHealth;
         private CharacterStamina _characterStamina;
         private CharacterMovement _characterMovement;
 
@@ -64,11 +65,15 @@ namespace CombatAI.Game.Characters
             _animator = GetComponentInChildren<Animator>();
             _characterStamina = GetComponent<CharacterStamina>();
             _characterMovement = GetComponent<CharacterMovement>();
+            _characterHealth = GetComponent<CharacterHealth>();
         }
 
         #region Attack
         public virtual void Attack(Attacks.Types attackType)
         {
+            if (_characterHealth.currentHealth <= 0f)
+                return;
+
             switch (attackType)
             {
                 case Attacks.Types.AttackDown:

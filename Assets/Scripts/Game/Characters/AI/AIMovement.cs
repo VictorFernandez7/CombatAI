@@ -25,7 +25,7 @@ namespace CombatAI.Game.Characters.AI
 
         private void Update()
         {
-            if (currentDirection != 0)
+            if (currentDirection != 0 && grounded)
                 Move(currentDirection);
 
             else

@@ -50,8 +50,11 @@ namespace CombatAI.Game.Characters
                     {
                         if (!CheckIfCharacterIsBlocking(collision.GetComponent<CharacterAttack>())) // THEN CHECK BLOCK
                         {
-                            collision.GetComponent<CharacterHealth>().TakeDamage(_damage);
-                            ApplyForce(Situations.Damage, collision.gameObject, collision.transform.position.x > transform.position.x);
+                            if (_characterMovement.grounded) // THEN CHECK JUMP
+                            {
+                                collision.GetComponent<CharacterHealth>().TakeDamage(_damage);
+                                ApplyForce(Situations.Damage, collision.gameObject, collision.transform.position.x > transform.position.x);
+                            }
                         }
                     }
                 }

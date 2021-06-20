@@ -56,6 +56,7 @@ namespace CombatAI.Game.Characters.AI
         private float _distanceToWall;
         private Transform _visuals;
         private AIMovement _aIMovement;
+        private Data.AI.States _previousState;
         private CharacterHealth _characterHealth;
         private CharacterAttack _characterAttack;
         private CharacterStamina _characterStamina;
@@ -100,23 +101,28 @@ namespace CombatAI.Game.Characters.AI
             } while (_characterHealth.currentHealth > 0);
         }
 
+        private float _randomDecision;
+
         private void TakeDecision()
         {
             if (CheckStamina())
             {
-                float randomDecision = Random.Range(0f, 1f);
+                do
+                {
+                    _randomDecision = Random.Range(0f, 1f);
 
-                if (randomDecision <= 40f)
-                    _currentState = Data.AI.States.MovingAndAttacking;
+                    if (_randomDecision <= 0.33f)
+                        _currentState = Data.AI.States.MovingAndAttacking;
 
-                else if (randomDecision <= 80)
-                    _currentState = Data.AI.States.Blocking;
+                    else if (_randomDecision <= 0.66)
+                        _currentState = Data.AI.States.Blocking;
 
-                else
-                    _currentState = Data.AI.States.MantainingDistance;
+                    else
+                        _currentState = Data.AI.States.MantainingDistance;
+                } while (_currentState == _previousState);
             }
 
-            _currentState = Data.AI.States.MantainingDistance;
+            _previousState = _currentState;
             PerformAction();
         }
 
@@ -148,7 +154,6 @@ namespace CombatAI.Game.Characters.AI
         {
             _aIMovement.currentDirection = 0f;
             _characterAttack.Attack(Data.Attacks.Types.AttackUp);
-            _currentState = Data.AI.States.Thinking;
             performingAction = false;
         }
 
@@ -172,12 +177,8 @@ namespace CombatAI.Game.Characters.AI
             RaycastHit2D leftWallCheck = Physics2D.Raycast(transform.position, Vector2.left, Mathf.Infinity, _wallLayer);
             _distanceToWall = Mathf.Min(rightWallCheck.distance, leftWallCheck.distance);
 
-            _aIMovement.currentDirection = -playerDirection;
-
             if (_distanceToWall <= _safeDistanceFromWalls)
             {
-                _aIMovement.currentDirection = 0f;
-
                 float randomMovement = Random.Range(0f, 1f);
 
                 if (randomMovement <= 0.5f)
@@ -187,12 +188,23 @@ namespace CombatAI.Game.Characters.AI
                     StartCoroutine(_characterMovement.Dash());
 
                 performingAction = false;
+                _aIMovement.currentDirection = 0f;
             }
         }
 
         private void CheckForPlayer()
         {
+            if (_distanceToPlayer < _safeDistanceFromPlayer)
+            {
+                if (!_aIMovement.dashing && _aIMovement.grounded)
+                    _aIMovement.currentDirection = -playerDirection;
 
+                else
+                    _aIMovement.currentDirection = 0f;
+            }
+
+            else
+                _aIMovement.currentDirection = 0f;
         }
         #endregion
 
