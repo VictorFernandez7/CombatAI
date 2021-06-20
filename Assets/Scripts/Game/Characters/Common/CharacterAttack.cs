@@ -11,6 +11,7 @@ namespace CombatAI.Game.Characters
     public class CharacterAttack : MonoBehaviour
     {
         [TitleGroup("Class Parameters")]
+        [FoldoutGroup("Class Parameters/Current Attack")] [SerializeField] [ReadOnly] [HideLabel] [EnumToggleButtons] private Attacks.Types _currentAttack;
         [FoldoutGroup("Class Parameters/Attacks Duration")] [SerializeField] private float _attackDownDuration;
         [FoldoutGroup("Class Parameters/Attacks Duration")] [SerializeField] private float _attackUpDuration;
 
@@ -20,6 +21,10 @@ namespace CombatAI.Game.Characters
         [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _fadeOutTime = 1f;
 
         #region Properties
+        public bool blockingUp => _blockingUp;
+        public bool blockingDown => _blockingDown;
+        public Attacks.Types currentAttack => _currentAttack;
+
         public bool attacking
         {
             get => _attacking;
@@ -44,6 +49,8 @@ namespace CombatAI.Game.Characters
 
         private bool _blocking;
         private bool _attacking;
+        private bool _blockingUp;
+        private bool _blockingDown;
         private Animator _animator;
         private CharacterStamina _characterStamina;
         private CharacterMovement _characterMovement;
@@ -62,9 +69,11 @@ namespace CombatAI.Game.Characters
             {
                 case Attacks.Types.AttackDown:
                     StartCoroutine(AttackProcess("AttackingDown", _attackDownDuration));
+                    _currentAttack = Attacks.Types.AttackDown;
                     break;
                 case Attacks.Types.AttackUp:
                     StartCoroutine(AttackProcess("AttackingUp", _attackUpDuration));
+                    _currentAttack = Attacks.Types.AttackUp;
                     break;
             }
 
@@ -82,6 +91,7 @@ namespace CombatAI.Game.Characters
 
             _attacking = false;
             _animator.SetBool(animatorParameter, false);
+            _currentAttack = Attacks.Types.None;
         }
         #endregion
 
@@ -93,9 +103,11 @@ namespace CombatAI.Game.Characters
             switch (blockType)
             {
                 case Blocks.Types.BlockDown:
+                    _blockingDown = true;
                     _animator.SetBool("BlockingDown", true);
                     break;
                 case Blocks.Types.BlockUp:
+                    _blockingUp = true;
                     _animator.SetBool("BlockingUp", true);
                     break;
             }
@@ -108,9 +120,11 @@ namespace CombatAI.Game.Characters
             switch (blockType)
             {
                 case Blocks.Types.BlockDown:
+                    _blockingDown = false;
                     _animator.SetBool("BlockingDown", false);
                     break;
                 case Blocks.Types.BlockUp:
+                    _blockingUp = false;
                     _animator.SetBool("BlockingUp", false);
                     break;
             }

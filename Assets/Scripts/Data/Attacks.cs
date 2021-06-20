@@ -4,6 +4,7 @@ namespace CombatAI.Data
     {
         public enum Types
         {
+            None,
             AttackDown,
             AttackUp
         }

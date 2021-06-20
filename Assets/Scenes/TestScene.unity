@@ -1544,9 +1544,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b185a940ac9b4342a90cc863176d608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAnAttack: 1
   _damage: 10
-  _impulseForce: 2
-  _impulseDirection: {x: 1.5, y: 1}
+  _damageImpulseForce: 3.5
+  _damageImpulseDirection: {x: 1.5, y: 1.5}
+  _blockmpulseForce: 3
+  _blockmpulseDirection: {x: 1.5, y: 0.5}
 --- !u!60 &515880670
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1628,9 +1631,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b185a940ac9b4342a90cc863176d608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAnAttack: 0
   _damage: 10
-  _impulseForce: 3.5
-  _impulseDirection: {x: 1.5, y: 1.5}
+  _damageImpulseForce: 3.5
+  _damageImpulseDirection: {x: 1.5, y: 1.5}
+  _blockmpulseForce: 2
+  _blockmpulseDirection: {x: 1.5, y: 0.5}
 --- !u!61 &591710248
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2078,6 +2084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e43fb9c84f41a49bb52912bdf51af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentAttack: 0
   _attackDownDuration: 0.5
   _attackUpDuration: 0.5
   _magnitude: 1
@@ -2145,9 +2152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b185a940ac9b4342a90cc863176d608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAnAttack: 1
   _damage: 10
-  _impulseForce: 2
-  _impulseDirection: {x: 1.5, y: 1}
+  _damageImpulseForce: 3.5
+  _damageImpulseDirection: {x: 1.5, y: 1.5}
+  _blockmpulseForce: 3
+  _blockmpulseDirection: {x: 1.5, y: 0.5}
 --- !u!60 &780643298
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4022,9 +4032,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b185a940ac9b4342a90cc863176d608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAnAttack: 1
   _damage: 10
-  _impulseForce: 2
-  _impulseDirection: {x: 1.5, y: 1}
+  _damageImpulseForce: 3.5
+  _damageImpulseDirection: {x: 1.5, y: 1.5}
+  _blockmpulseForce: 3
+  _blockmpulseDirection: {x: 1.5, y: 0.5}
 --- !u!60 &1545470065
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10632,9 +10645,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b185a940ac9b4342a90cc863176d608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAnAttack: 1
   _damage: 10
-  _impulseForce: 2
-  _impulseDirection: {x: 1.5, y: 1}
+  _damageImpulseForce: 3.5
+  _damageImpulseDirection: {x: 1.5, y: 1.5}
+  _blockmpulseForce: 3
+  _blockmpulseDirection: {x: 1.5, y: 0.5}
 --- !u!60 &1717007908
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11217,9 +11233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b185a940ac9b4342a90cc863176d608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAnAttack: 1
   _damage: 10
-  _impulseForce: 2
-  _impulseDirection: {x: 1.5, y: 1}
+  _damageImpulseForce: 3.5
+  _damageImpulseDirection: {x: 1.5, y: 1.5}
+  _blockmpulseForce: 3
+  _blockmpulseDirection: {x: 1.5, y: 0.5}
 --- !u!60 &1938944613
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11376,9 +11395,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b185a940ac9b4342a90cc863176d608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAnAttack: 1
   _damage: 10
-  _impulseForce: 2
-  _impulseDirection: {x: 1.5, y: 1}
+  _damageImpulseForce: 3.5
+  _damageImpulseDirection: {x: 1.5, y: 1.5}
+  _blockmpulseForce: 3
+  _blockmpulseDirection: {x: 1.5, y: 0.5}
 --- !u!60 &2034038884
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -11752,6 +11774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97635eb8945b80541a848397701b003d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentAttack: 0
   _attackDownDuration: 0.5
   _attackUpDuration: 0.5
   _magnitude: 1
