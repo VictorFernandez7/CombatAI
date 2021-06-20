@@ -43,7 +43,10 @@ namespace CombatAI.Game.Characters.AI
             {
                 _performingAction = value;
                 if (!value)
+                {
                     _currentState = Data.AI.States.Thinking;
+                    StartCoroutine(TakeDecision());
+                }
             }
         }
         #endregion
@@ -54,6 +57,7 @@ namespace CombatAI.Game.Characters.AI
         private float _playerDirection;
         private float _distanceToPlayer;
         private float _distanceToWall;
+        private float _randomDecision;
         private Transform _visuals;
         private AIMovement _aIMovement;
         private Data.AI.States _previousState;
@@ -61,6 +65,7 @@ namespace CombatAI.Game.Characters.AI
         private CharacterAttack _characterAttack;
         private CharacterStamina _characterStamina;
         private CharacterMovement _characterMovement;
+
         #endregion
 
         private void Awake()
@@ -76,31 +81,26 @@ namespace CombatAI.Game.Characters.AI
         private void Start()
         {
             _currentState = Data.AI.States.Thinking;
-            StartCoroutine(DecisionLoop());
+
+            StartCoroutine(TakeDecision());
         }
 
         private void Update()
         {
+            if (_currentState == Data.AI.States.Thinking)
+                _aIMovement.currentDirection = 0f;
+
             LookToPlayer();
             AttackCheck();
             MantainDistance();
         }
 
         #region Brain Core
-        private IEnumerator DecisionLoop()
+        private IEnumerator TakeDecision()
         {
-            do
-            {
+            if (_previousState == Data.AI.States.MantainingDistance)
                 yield return new WaitForSeconds(_timeBetweenDecisions);
-                if (!performingAction)
-                    TakeDecision();
-            } while (_characterHealth.currentHealth > 0);
-        }
 
-        private float _randomDecision;
-
-        private void TakeDecision()
-        {
             if (CheckStamina())
             {
                 do

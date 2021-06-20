@@ -2850,7 +2850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffb6f06c371c5eb4ea24720bfe02bd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 5
+  _movementSpeed: 4.5
   _jumpForce: 12
   _jumpDirection: {x: 1.5, y: 2}
   _jumpLinearDrag: 1
