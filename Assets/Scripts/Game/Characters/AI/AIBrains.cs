@@ -31,6 +31,7 @@ namespace CombatAI.Game.Characters.AI
         }
 
         private bool _ignoreLook;
+        private bool _performinAction;
         private float _playerDirection;
         private float _distanceToPlayer;
         private Transform _visuals;
@@ -50,6 +51,7 @@ namespace CombatAI.Game.Characters.AI
 
         private void Start()
         {
+            _currentState = Data.AI.States.Thinking;
             StartCoroutine(DecisionLoop());
         }
 
@@ -62,6 +64,7 @@ namespace CombatAI.Game.Characters.AI
                 _aIMovement.currentDirection = 0f;
                 _characterAttack.Attack(Data.Attacks.Types.AttackUp);
                 _currentState = Data.AI.States.Thinking;
+                _performinAction = false;
             }
         }
 
@@ -70,8 +73,9 @@ namespace CombatAI.Game.Characters.AI
         {
             do
             {
-                TakeDecision();
                 yield return new WaitForSeconds(_timeBetweenDecisions);
+                if (!_performinAction)
+                    TakeDecision();
             } while (_characterHealth.currentHealth > 0);
         }
 
@@ -113,6 +117,7 @@ namespace CombatAI.Game.Characters.AI
         #region Actions
         private void AttackPlayer()
         {
+            _performinAction = true;
             _aIMovement.currentDirection = playerDirection;
         }
         #endregion

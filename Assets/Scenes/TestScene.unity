@@ -2909,7 +2909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentState: 0
-  _timeBetweenDecisions: 5
+  _timeBetweenDecisions: 2
   _lowStamina: 5
   _attackDistance: 0.75
   _player: {fileID: 7216317338026790949}
