@@ -82,6 +82,7 @@ namespace CombatAI.Game.Characters
                 || (_attacker.currentAttack == Attacks.Types.AttackUp && defender.blockingUp))
             {
                 ApplyForce( Situations.Block, defender.gameObject, defender.transform.position.x > transform.position.x);
+                defender.blockAnimator.SetTrigger("Block");
                 return true;
             }
 

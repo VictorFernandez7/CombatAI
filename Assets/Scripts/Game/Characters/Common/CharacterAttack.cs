@@ -20,9 +20,13 @@ namespace CombatAI.Game.Characters
         [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _fadeInTime = 0.1f;
         [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _fadeOutTime = 1f;
 
+        [TitleGroup("Class References")]
+        [FoldoutGroup("Class References/Effects")] [SerializeField] private Animator _blockAnimator;
+
         #region Properties
         public bool blockingUp => _blockingUp;
         public bool blockingDown => _blockingDown;
+        public Animator blockAnimator => _blockAnimator;
         public Attacks.Types currentAttack => _currentAttack;
 
         public bool attacking
