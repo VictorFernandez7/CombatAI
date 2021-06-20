@@ -26,6 +26,7 @@ namespace CombatAI.Game.Characters
         private bool _doDamage = true;
         private Vector2 finalImpulseDirection;
         private CharacterAttack _attacker;
+        private CharacterMovement _characterMovement;
 
         public enum Situations
         {
@@ -36,16 +37,23 @@ namespace CombatAI.Game.Characters
         private void Awake()
         {
             _attacker = GetComponentInParent<CharacterAttack>();
+            _characterMovement = GetComponentInParent<CharacterMovement>();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (doDamage)
             {
-                if (collision.gameObject.layer == LayerMask.NameToLayer("Character") && !collision.GetComponent<CharacterMovement>().dashing && !CheckIfCharacterIsBlocking(collision.GetComponent<CharacterAttack>()))
+                if (collision.gameObject.layer == LayerMask.NameToLayer("Character")) // FIRST CHECK LAYER
                 {
-                    collision.GetComponent<CharacterHealth>().TakeDamage(_damage);
-                    ApplyForce( Situations.Damage, collision.gameObject, collision.transform.position.x > transform.position.x);
+                    if (!collision.GetComponent<CharacterMovement>().dashing && !_characterMovement.dashing) // THEN CHECK DASH
+                    {
+                        if (!CheckIfCharacterIsBlocking(collision.GetComponent<CharacterAttack>())) // THEN CHECK BLOCK
+                        {
+                            collision.GetComponent<CharacterHealth>().TakeDamage(_damage);
+                            ApplyForce(Situations.Damage, collision.gameObject, collision.transform.position.x > transform.position.x);
+                        }
+                    }
                 }
             }
         }
