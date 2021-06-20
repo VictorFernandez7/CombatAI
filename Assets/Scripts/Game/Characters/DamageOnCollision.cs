@@ -24,6 +24,7 @@ namespace CombatAI.Game.Characters
         }
 
         private bool _doDamage = true;
+        private Vector2 finalImpulseDirection;
         private CharacterAttack _attacker;
 
         public enum Situations
@@ -51,8 +52,6 @@ namespace CombatAI.Game.Characters
 
         private void ApplyForce(Situations situation, GameObject targetCharacter, bool targetIsRight)
         {
-            Vector2 finalImpulseDirection = Vector2.zero;
-
             switch (situation)
             {
                 case Situations.Damage:
