@@ -8,16 +8,21 @@ namespace CombatAI.Game.Characters.AI
     public class AIBrains : MonoBehaviour
     {
         [Title("Current State")]
-        [SerializeField] [HideLabel] private CombatAI.Data.AI.States _currentState;
+        [SerializeField] [HideLabel] private Data.AI.States _currentState;
 
         [TitleGroup("AI Parameters")]
         [FoldoutGroup("AI Parameters/Main")] [SerializeField] private float _timeBetweenDecisions;
+        [FoldoutGroup("AI Parameters/Main")] [SerializeField] [ProgressBar(0, 10, 0, 1, 0, Segmented = true)] private int _lowStamina;
         [FoldoutGroup("AI Parameters/Move & Attack")] [SerializeField] private float _attackDistance;
 
         [TitleGroup("References")]
         [FoldoutGroup("References/Player")] [SerializeField] private Transform _player;
 
-        public float playerDirection => _playerDirection;
+        public float playerDirection
+        {
+            get => _playerDirection;
+            set { _playerDirection = value; }
+        }
 
         public bool ignoreLook
         {
@@ -27,8 +32,11 @@ namespace CombatAI.Game.Characters.AI
 
         private bool _ignoreLook;
         private float _playerDirection;
+        private float _distanceToPlayer;
         private Transform _visuals;
+        private AIMovement _aIMovement;
         private CharacterHealth _characterHealth;
+        private CharacterAttack _characterAttack;
         private CharacterStamina _characterStamina;
 
         private void Awake()
@@ -36,6 +44,8 @@ namespace CombatAI.Game.Characters.AI
             _visuals = GetComponentInChildren<SpriteRenderer>().transform;
             _characterHealth = GetComponent<CharacterHealth>();
             _characterStamina = GetComponent<CharacterStamina>();
+            _characterAttack = GetComponent<CharacterAttack>();
+            _aIMovement = GetComponent<AIMovement>();
         }
 
         private void Start()
@@ -46,6 +56,13 @@ namespace CombatAI.Game.Characters.AI
         private void Update()
         {
             LookToPlayer();
+
+            if (_currentState == Data.AI.States.MovingAndAttacking && CheckAttackRange())
+            {
+                _aIMovement.currentDirection = 0f;
+                _characterAttack.Attack(Data.Attacks.Types.AttackUp);
+                _currentState = Data.AI.States.Thinking;
+            }
         }
 
         #region Brain Core
@@ -60,17 +77,21 @@ namespace CombatAI.Game.Characters.AI
 
         private void TakeDecision()
         {
-            int randomDecision = Random.Range(0, 3);
+            if (CheckStamina())
+            {
+                float randomDecision = Random.Range(0f, 1f);
 
-            if (randomDecision == 0)
-                _currentState = Data.AI.States.MovingAndAttacking;
+                if (randomDecision <= 40f)
+                    _currentState = Data.AI.States.MovingAndAttacking;
 
-            else if (randomDecision == 1)
-                _currentState = Data.AI.States.Blocking;
+                else if (randomDecision <= 80)
+                    _currentState = Data.AI.States.Blocking;
 
-            else if (randomDecision == 2)
-                _currentState = Data.AI.States.MantainingDistance;
+                else
+                    _currentState = Data.AI.States.MantainingDistance;
+            }
 
+            _currentState = Data.AI.States.MovingAndAttacking;
             PerformAction();
         }
 
@@ -79,23 +100,44 @@ namespace CombatAI.Game.Characters.AI
             switch (_currentState)
             {
                 case Data.AI.States.MovingAndAttacking:
+                    AttackPlayer();
                     break;
                 case Data.AI.States.Blocking:
                     break;
                 case Data.AI.States.MantainingDistance:
                     break;
             }
-        } 
+        }
+        #endregion
+
+        #region Actions
+        private void AttackPlayer()
+        {
+            _aIMovement.currentDirection = playerDirection;
+        }
+        #endregion
+
+        #region Resources
+        private bool CheckStamina()
+        {
+            return _characterStamina.currentStamina > _lowStamina;
+        }
+
+        private bool CheckAttackRange()
+        {
+            return _distanceToPlayer < _attackDistance;
+        }
         #endregion
 
         #region Utility
         private void LookToPlayer()
         {
-            _playerDirection = _player.position.x > transform.position.x ? 1 : -1;
+            playerDirection = _player.position.x > transform.position.x ? 1 : -1;
+            _distanceToPlayer = Vector2.Distance(transform.position, _player.position);
 
             if (!_ignoreLook)
-                _visuals.localScale = new Vector2(_playerDirection, _visuals.localScale.y);
-        } 
+                _visuals.localScale = new Vector2(playerDirection, _visuals.localScale.y);
+        }
         #endregion
 
         #region Editor
