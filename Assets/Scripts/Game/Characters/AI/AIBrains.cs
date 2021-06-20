@@ -82,12 +82,8 @@ namespace CombatAI.Game.Characters.AI
         private void Update()
         {
             LookToPlayer();
-
-            if (_currentState == Data.AI.States.MovingAndAttacking && CheckAttackRange())
-                AttackCheck();
-
-            if (_currentState == Data.AI.States.MantainingDistance)
-                MantainDistance();
+            AttackCheck();
+            MantainDistance();
         }
 
         #region Brain Core
@@ -152,9 +148,15 @@ namespace CombatAI.Game.Characters.AI
 
         private void AttackCheck()
         {
-            _aIMovement.currentDirection = 0f;
-            _characterAttack.Attack(Data.Attacks.Types.AttackUp);
-            performingAction = false;
+            if (_currentState == Data.AI.States.MovingAndAttacking)
+            {
+                if (CheckAttackRange() || _playerDirection != _aIMovement.currentDirection)
+                {
+                    _aIMovement.currentDirection = 0f;
+                    _characterAttack.Attack(Data.Attacks.Types.AttackUp);
+                    performingAction = false;
+                }
+            }
         }
 
         private IEnumerator Block()
@@ -167,8 +169,11 @@ namespace CombatAI.Game.Characters.AI
 
         private void MantainDistance()
         {
-            CheckForWalls();
-            CheckForPlayer();
+            if (_currentState == Data.AI.States.MantainingDistance)
+            {
+                CheckForWalls();
+                CheckForPlayer();
+            }
         }
 
         private void CheckForWalls()
@@ -196,11 +201,14 @@ namespace CombatAI.Game.Characters.AI
         {
             if (_distanceToPlayer < _safeDistanceFromPlayer)
             {
-                if (!_aIMovement.dashing && _aIMovement.grounded)
-                    _aIMovement.currentDirection = -playerDirection;
-
-                else
+                if (!_aIMovement.grounded || _aIMovement.dashing)
+                {
                     _aIMovement.currentDirection = 0f;
+                    return;
+                }
+
+                if (_aIMovement.grounded && !_aIMovement.dashing)
+                    _aIMovement.currentDirection = -playerDirection;
             }
 
             else
