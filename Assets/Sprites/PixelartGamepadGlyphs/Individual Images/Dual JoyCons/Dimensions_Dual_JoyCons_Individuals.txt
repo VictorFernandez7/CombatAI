@@ -1,0 +1,172 @@
+
+- Dimensions of Dual JoyCons Images - 
+
+Image Size:
+Indicates the full width and height of the .png image in pixels. Import into projects at this size.
+
+gp_jc2_dpad_dark_(1-5)       64x64px
+	
+gp_jc2_dpad_light_(1-5)      64x64px
+	
+gp_jc2_face_a_(1-2)          32x32px
+	
+gp_jc2_face_all_1            256x64px
+	
+gp_jc2_face_all_2            256x64px
+	
+gp_jc2_face_all_3            256x64px
+	
+gp_jc2_face_all_4            256x64px
+	
+gp_jc2_face_all_5            256x64px
+	
+gp_jc2_face_all_simple_1     64x64px
+	
+gp_jc2_face_all_simple_2     64x64px
+
+gp_jc2_face_all_simple_3     64x64px
+	
+gp_jc2_face_all_simple_4     64x64px
+	
+gp_jc2_face_all_simple_5     64x64px
+	
+gp_jc2_face_b_(1-2)          32x32px
+	
+gp_jc2_face_x_(1-2)          32x32px
+	
+gp_jc2_face_y_(1-2)          32x32px
+	
+gp_jc2_home                  32x32px
+	
+gp_jc2_media                 32x32px
+	
+gp_jc2_minus                 32x32px
+	
+gp_jc2_plus                  32x32px
+	
+gp_jc2_shoulder_l            32x32px
+	
+gp_jc2_shoulder_r            32x32px
+	
+gp_jc2_shoulder_sl_jcl_(1-2) 32x32px
+	
+gp_jc2_shoulder_sl_jcr_(1-2) 32x32px
+	
+gp_jc2_shoulder_sr_jcl_(1-2) 32x32px
+	
+gp_jc2_shoulder_sr_jcr_(1-2) 32x32px
+	
+gp_jc2_shoulder_zl           32x32px
+	
+gp_jc2_shoulder_zr           32x32px
+	
+gp_jc2_stick_left_1          32x32px
+	
+gp_jc2_stick_left_2          32x32px
+	
+gp_jc2_stick_left_press_1    32x32px
+	
+gp_jc2_stick_left_press_2    32x32px
+	
+gp_jc2_stick_right_1         32x32px
+	
+gp_jc2_stick_right_2         32x32px
+	
+gp_jc2_stick_right_press_1   32x32px
+	
+gp_jc2_stick_right_press_2   32x32px
+	
+----------------------------------------
+	
+Sprite Size:
+Indicates the exact dimensions of the image that will be displayed in a project if unaltered. (Image Size without margins)
+
+gp_jc2_dpad_dark_(1-5)       52x52px
+	
+gp_jc2_dpad_light_(1-5)      52x52px
+	
+gp_jc2_face_a_(1-2)          20x20px
+	
+gp_jc2_face_all_1            54x54px
+	
+gp_jc2_face_all_2            139x57px
+	
+gp_jc2_face_all_3            155x57px
+	
+gp_jc2_face_all_4            155x57px
+	
+gp_jc2_face_all_5            139x57px
+	
+gp_jc2_face_all_simple_1     54x54px
+	
+gp_jc2_face_all_simple_2     54x57px
+
+gp_jc2_face_all_simple_3     57x54px
+	
+gp_jc2_face_all_simple_4     57x54px
+	
+gp_jc2_face_all_simple_5     54x57px
+	
+gp_jc2_face_b_(1-2)          20x20px
+	
+gp_jc2_face_x_(1-2)          20x20px
+	
+gp_jc2_face_y_(1-2)          20x20px
+	
+gp_jc2_home                  20x20px
+	
+gp_jc2_media                 14x14px
+	
+gp_jc2_minus                 16x16px
+	
+gp_jc2_plus                  16x16px
+	
+gp_jc2_shoulder_l            26x17px
+	
+gp_jc2_shoulder_r            26x17px
+	
+gp_jc2_shoulder_sl_jcl_(1-2) 16x26px
+	
+gp_jc2_shoulder_sl_jcr_(1-2) 16x26px
+	
+gp_jc2_shoulder_sr_jcl_(1-2) 16x26px
+	
+gp_jc2_shoulder_sr_jcr_(1-2) 16x26px
+	
+gp_jc2_shoulder_zl           26x18px
+	
+gp_jc2_shoulder_zr           26x18px
+	
+gp_jc2_stick_left_1          30x30px
+	
+gp_jc2_stick_left_2          32x32px
+	
+gp_jc2_stick_left_press_1    20x28px
+	
+gp_jc2_stick_left_press_2    20x24px
+	
+gp_jc2_stick_right_1         30x30px
+	
+gp_jc2_stick_right_2         32x32px
+	
+gp_jc2_stick_right_press_1   20x28px
+	
+gp_jc2_stick_right_press_2   20x24px
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -4,6 +4,7 @@ namespace CombatAI.Data
     {
         public enum States
         {
+            Thinking,
             MovingAndAttacking,
             Blocking,
             MantainingDistance

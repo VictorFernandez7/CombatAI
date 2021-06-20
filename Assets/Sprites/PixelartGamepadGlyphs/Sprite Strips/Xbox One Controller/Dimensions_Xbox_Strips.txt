@@ -1,0 +1,51 @@
+
+- Dimensions of Xbox One Controller Images - 
+
+Image Size:
+Indicates the full width and height of the images in the strip in pixels. Import into projects at this size.
+
+gp_xbox_bumper_left               32x32px   (1 image)
+
+gp_xbox_bumper_right              32x32px   (1 image)
+
+gp_xbox_dpad_dark                 64x64px   (5 images)
+	
+gp_xbox_dpad_light                64x64px   (5 images)
+	
+gp_xbox_face_a                    32x32px   (2 images)
+	
+gp_xbox_face_all                  256x64px  (5 images)
+	
+gp_xbox_face_all_alt              256x64px  (5 images)
+	
+gp_xbox_face_all_simple           64x64px   (5 images)
+	
+gp_xbox_face_all_simple_alt       64x64px   (5 images)
+	
+gp_xbox_face_b                    32x32px   (2 images)
+	
+gp_xbox_face_x_                   32x32px   (2 images)
+	
+gp_xbox_face_y                    32x32px   (2 images)
+	
+gp_xbox_home                      32x32px   (1 image)
+	
+gp_xbox_stick_left                32x32px   (2 images)
+	
+gp_xbox_stick_left_press          32x32px   (2 images)
+	
+gp_xbox_stick_right               32x32px   (2 images)
+	
+gp_xbox_stick_right_press         32x32px   (2 images)
+
+gp_xbox_trigger_left              32x32px   (1 image)
+
+gp_xbox_trigger_right             32x32px   (1 image)
+	
+gp_xbox_view                      32x32px   (1 image)
+	
+	
+	
+	
+	
+	

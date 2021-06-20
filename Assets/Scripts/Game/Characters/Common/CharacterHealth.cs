@@ -33,6 +33,7 @@ namespace CombatAI.Game.Characters
 
         private Animator _animator;
         private Rigidbody2D _rigidbody2D;
+        private AI.AIBrains _aIBrains;
         private CharacterMovement _characterMovement;
 
         private void Awake()
@@ -40,6 +41,7 @@ namespace CombatAI.Game.Characters
             _animator = GetComponentInChildren<Animator>();
             _rigidbody2D = GetComponentInChildren<Rigidbody2D>();
             _characterMovement = GetComponentInChildren<CharacterMovement>();
+            _aIBrains = GetComponentInChildren<AI.AIBrains>();
         }
 
         private void Start()
@@ -75,7 +77,16 @@ namespace CombatAI.Game.Characters
             _characterMovement.canMove = false;
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.isKinematic = true;
-            GetComponentInChildren<DamageOnCollision>().doDamage = false;
+
+            if (_aIBrains != null)
+                _aIBrains.StopAllCoroutines();
+
+            Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].enabled = false;
+            }
 
             do
             {

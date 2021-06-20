@@ -1,0 +1,77 @@
+
+- Dimensions of Keyboard Images - 
+
+Image Size:
+Indicates the full width and height of the .png image in pixels. Import into projects at this size.
+
+ALL KEYS EXCEPT THE ONES SPECIFIED ARE          32x32px
+
+key_alt(1-2)                                    48x32px
+
+key_backspace(1-2)                              48x32px
+
+key_control(1-2)                                48x32px
+
+key_enter(1-2)                                  48x32px
+
+key_extra_wide_(1-2)                            64x32px
+
+key_shift(1-2)                                  48x32px
+
+key_space(1-2)                                  64x32px
+
+key_tab(1-2)                                    48x32px
+
+key_wide_(1-2)                                  48x32px
+
+mouse_button_left_dark_(1-2)                    64x64px
+
+mouse_button_left_light_(1-2)                   64x64px
+
+mouse_button_middle_dark_(1-2)                  64x64px
+
+mouse_button_middle_light_(1-2)                 64x64px
+
+mouse_button_right_dark_(1-2)                   64x64px
+
+mouse_button_right_light_(1-2)                  64x64px
+	
+----------------------------------------
+	
+Sprite Size:
+Indicates the exact dimensions of the image that will be displayed in a project if unaltered. (Image Size without margins)
+
+ALL KEYS EXCEPT THE ONES SPECIFIED ARE          28x27px
+
+key_alt(1-2)                                    44x27px
+
+key_backspace(1-2)                              44x27px
+
+key_control(1-2)                                44x27px
+
+key_enter(1-2)                                  44x27px
+
+key_extra_wide_(1-2)                            60x27px
+
+key_shift(1-2)                                  44x27px
+
+key_space(1-2)                                  60x27px
+
+key_tab(1-2)                                    44x27px
+
+key_wide_(1-2)                                  44x27px
+
+mouse_button_left_dark_(1-2)                    42x61px
+
+mouse_button_left_light_(1-2)                   42x61px
+
+mouse_button_middle_dark_(1-2)                  42x61px
+
+mouse_button_middle_light_(1-2)                 42x61px
+
+mouse_button_right_dark_(1-2)                   42x61px
+
+mouse_button_right_light_(1-2)                  42x61px
+	
+
+	
