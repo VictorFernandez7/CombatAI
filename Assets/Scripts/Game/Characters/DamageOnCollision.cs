@@ -12,12 +12,23 @@ namespace CombatAI.Game.Characters
         [SerializeField] private float _impulseForce = 3.5f;
         [SerializeField] private Vector2 _impulseDirection = new Vector2(1.5f, 1.5f);
 
+        public bool doDamage
+        {
+            get => _doDamage;
+            set { _doDamage = value; }
+        }
+
+        private bool _doDamage = true;
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Character") && !collision.GetComponent<CharacterMovement>().dashing)
+            if (doDamage)
             {
-                collision.GetComponent<CharacterHealth>().TakeDamage(_damage);
-                ApplyForce(collision.gameObject, collision.transform.position.x > transform.position.x);
+                if (collision.gameObject.layer == LayerMask.NameToLayer("Character") && !collision.GetComponent<CharacterMovement>().dashing)
+                {
+                    collision.GetComponent<CharacterHealth>().TakeDamage(_damage);
+                    ApplyForce(collision.gameObject, collision.transform.position.x > transform.position.x);
+                }
             }
         }
 

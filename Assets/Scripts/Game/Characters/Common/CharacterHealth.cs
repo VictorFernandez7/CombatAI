@@ -2,15 +2,21 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine.UI;
+using EZCameraShake;
 using UnityEngine;
 
 namespace CombatAI.Game.Characters
 {
     public class CharacterHealth : MonoBehaviour
     {
-        [Title("Parameters")]
-        [SerializeField] private float _maxHealth = 100f;
-        [SerializeField] private float _currentHealth = 100f;
+        [TitleGroup("Parameters")]
+        [FoldoutGroup("Parameters/Main")] [SerializeField] private float _maxHealth = 100f;
+        [FoldoutGroup("Parameters/Main")] [SerializeField] private float _currentHealth = 100f;
+
+        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _magnitude = 4f;
+        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _roughness = 4f;
+        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _fadeInTime = 0.1f;
+        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _fadeOutTime = 1f;
 
         [Title("References")]
         [SerializeField] private Slider _characterHealthSlider;
@@ -23,6 +29,17 @@ namespace CombatAI.Game.Characters
                 _currentHealth = value;
                 _characterHealthSlider.value = value;
             }
+        }
+
+        private Animator _animator;
+        private Rigidbody2D _rigidbody2D;
+        private CharacterMovement _characterMovement;
+
+        private void Awake()
+        {
+            _animator = GetComponentInChildren<Animator>();
+            _rigidbody2D = GetComponentInChildren<Rigidbody2D>();
+            _characterMovement = GetComponentInChildren<CharacterMovement>();
         }
 
         private void Start()
@@ -38,7 +55,13 @@ namespace CombatAI.Game.Characters
 
         public void TakeDamage(float amount)
         {
+            if (currentHealth <= 0)
+                return;
+
             currentHealth -= amount;
+            _animator.SetTrigger("Hit");
+
+            CameraShaker.Instance.ShakeOnce(_magnitude, _roughness, _fadeInTime, _fadeOutTime);
 
             if (currentHealth <= 0)
             {
@@ -49,7 +72,17 @@ namespace CombatAI.Game.Characters
 
         private void Death()
         {
+            _characterMovement.canMove = false;
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.isKinematic = true;
+            GetComponentInChildren<DamageOnCollision>().doDamage = false;
 
+            do
+            {
+                transform.Translate(Vector3.down * Time.deltaTime);
+            } while (transform.position.y > -1.35f);
+
+            _animator.SetTrigger("Death");
         }
     }
 }

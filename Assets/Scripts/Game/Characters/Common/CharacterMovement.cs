@@ -7,15 +7,19 @@ namespace CombatAI.Game.Characters
 {
     public class CharacterMovement : MonoBehaviour
     {
-        [TitleGroup("Parameters")]
-        [FoldoutGroup("Parameters/Movement")] [SerializeField] private float _movementSpeed = 5f;
-        [FoldoutGroup("Parameters/Jump")] [SerializeField] private float _jumpForce = 12f;
-        [FoldoutGroup("Parameters/Jump")] [SerializeField] private Vector2 _jumpDirection = new Vector2(1.5f, 2f);
-        [FoldoutGroup("Parameters/Jump")] [SerializeField] private float _jumpLinearDrag = 1f;
-        [FoldoutGroup("Parameters/Dash")] [SerializeField] private float _dashForce = 12f;
-        [FoldoutGroup("Parameters/Dash")] [SerializeField] private float _dashLinearDrag = 2.5f;
+        [TitleGroup("Class Parameters")]
+        [FoldoutGroup("Class Parameters/Movement")] [SerializeField] private float _movementSpeed = 5f;
+        [FoldoutGroup("Class Parameters/Jump")] [SerializeField] private float _jumpForce = 12f;
+        [FoldoutGroup("Class Parameters/Jump")] [SerializeField] private Vector2 _jumpDirection = new Vector2(1.5f, 2f);
+        [FoldoutGroup("Class Parameters/Jump")] [SerializeField] private float _jumpLinearDrag = 1f;
+        [FoldoutGroup("Class Parameters/Dash")] [SerializeField] private float _dashForce = 12f;
+        [FoldoutGroup("Class Parameters/Dash")] [SerializeField] private float _dashLinearDrag = 2.5f;
 
         #region Properties
+        public float movementSpeed => _movementSpeed;
+        public Animator animator => _animator;
+        public Transform visuals => _visuals;
+        public CharacterHealth characterHealth => _characterHealth;
         public CharacterStamina characterStamina => _characterStamina;
 
         public bool canMove
@@ -47,8 +51,8 @@ namespace CombatAI.Game.Characters
             {
                 _grounded = value;
                 _animator.SetBool("Grounded", value);
-                if (!value)
-                    _visuals.localScale = new Vector3(Mathf.Sign(_rigidbody2D.velocity.x), _visuals.localScale.y);
+                /*if (!value)
+                    _visuals.localScale = new Vector3(Mathf.Sign(_rigidbody2D.velocity.x), _visuals.localScale.y);*/
             }
         }
 
@@ -71,6 +75,7 @@ namespace CombatAI.Game.Characters
         private Animator _animator;
         private Transform _visuals;
         private Rigidbody2D _rigidbody2D;
+        private CharacterHealth _characterHealth; 
         private CharacterStamina _characterStamina; 
         #endregion
 
@@ -79,6 +84,7 @@ namespace CombatAI.Game.Characters
             _animator = GetComponentInChildren<Animator>();
             _visuals = _animator.transform;
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _characterHealth = GetComponent<CharacterHealth>();
             _characterStamina = GetComponent<CharacterStamina>();
         }
 
@@ -101,9 +107,9 @@ namespace CombatAI.Game.Characters
         }
 
         #region Horizontal Movement
-        public virtual void Move()
+        public virtual void Move(float desiredDirection)
         {
-            transform.Translate(Vector3.right * horizontalDirection * _movementSpeed * Time.deltaTime);
+            transform.Translate(Vector3.right * desiredDirection * _movementSpeed * Time.deltaTime);
         }
 
         public virtual Vector2 GetInput()
