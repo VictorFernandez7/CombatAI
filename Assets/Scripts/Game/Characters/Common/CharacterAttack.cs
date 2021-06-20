@@ -10,14 +10,14 @@ namespace CombatAI.Game.Characters
 {
     public class CharacterAttack : MonoBehaviour
     {
-        [TitleGroup("Parameters")]
-        [FoldoutGroup("Parameters/Attacks Duration")] [SerializeField] private float _attackDownDuration;
-        [FoldoutGroup("Parameters/Attacks Duration")] [SerializeField] private float _attackUpDuration;
+        [TitleGroup("Class Parameters")]
+        [FoldoutGroup("Class Parameters/Attacks Duration")] [SerializeField] private float _attackDownDuration;
+        [FoldoutGroup("Class Parameters/Attacks Duration")] [SerializeField] private float _attackUpDuration;
 
-        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _magnitude = 4f;
-        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _roughness = 4f;
-        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _fadeInTime = 0.1f;
-        [FoldoutGroup("Parameters/Camera Shake")] [SerializeField] private float _fadeOutTime = 1f;
+        [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _magnitude = 4f;
+        [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _roughness = 4f;
+        [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _fadeInTime = 0.1f;
+        [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _fadeOutTime = 1f;
 
         #region Properties
         public bool attacking

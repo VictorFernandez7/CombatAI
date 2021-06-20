@@ -10,7 +10,7 @@ namespace CombatAI.Game.Characters.Player
         private void Update()
         {
             if (canMove)
-                Move();
+                Move(horizontalDirection);
 
             if (Input.GetButtonDown("Jump") && grounded) // CHECK INPUT
             {
