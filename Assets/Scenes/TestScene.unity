@@ -2912,6 +2912,8 @@ MonoBehaviour:
   _timeBetweenDecisions: 2
   _lowStamina: 5
   _attackDistance: 0.75
+  _blockDuration: {x: 3, y: 4}
+  _safeDistance: 2
   _player: {fileID: 7216317338026790949}
 --- !u!1 &780643295
 GameObject:

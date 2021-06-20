@@ -23,6 +23,7 @@ namespace CombatAI.Game.Characters
         #region Properties
         public float jumpCost => _jumpCost;
         public float dashCost => _dashCost;
+        public float maxStamina => _maxStamina;
         public float attackCost => _attackCost;
 
         public bool canRegenerate

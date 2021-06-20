@@ -7,13 +7,15 @@ namespace CombatAI.Game.Characters.AI
 {
     public class AIBrains : MonoBehaviour
     {
-        [Title("Current State")]
-        [SerializeField] [HideLabel] private Data.AI.States _currentState;
+        [TitleGroup("Current State")]
+        [SerializeField] [HideLabel] [EnumToggleButtons] [ReadOnly] private Data.AI.States _currentState;
 
         [TitleGroup("AI Parameters")]
         [FoldoutGroup("AI Parameters/Main")] [SerializeField] private float _timeBetweenDecisions;
         [FoldoutGroup("AI Parameters/Main")] [SerializeField] [ProgressBar(0, 10, 0, 1, 0, Segmented = true)] private int _lowStamina;
-        [FoldoutGroup("AI Parameters/Move & Attack")] [SerializeField] private float _attackDistance;
+        [FoldoutGroup("AI Parameters/Move & Attack")] [SerializeField] private float _attackDistance = 0.75f;
+        [FoldoutGroup("AI Parameters/Block")] [SerializeField] [MinMaxSlider(0.5f, 5f, true)] private Vector2 _blockDuration;
+        [FoldoutGroup("AI Parameters/MantainDistance")] [SerializeField] private float _safeDistance;
 
         [TitleGroup("References")]
         [FoldoutGroup("References/Player")] [SerializeField] private Transform _player;
@@ -60,12 +62,10 @@ namespace CombatAI.Game.Characters.AI
             LookToPlayer();
 
             if (_currentState == Data.AI.States.MovingAndAttacking && CheckAttackRange())
-            {
-                _aIMovement.currentDirection = 0f;
-                _characterAttack.Attack(Data.Attacks.Types.AttackUp);
-                _currentState = Data.AI.States.Thinking;
-                _performinAction = false;
-            }
+                AttackCheck();
+
+            if (_currentState == Data.AI.States.MantainingDistance)
+                MantainDistance();
         }
 
         #region Brain Core
@@ -95,7 +95,7 @@ namespace CombatAI.Game.Characters.AI
                     _currentState = Data.AI.States.MantainingDistance;
             }
 
-            _currentState = Data.AI.States.MovingAndAttacking;
+            _currentState = Data.AI.States.MantainingDistance;
             PerformAction();
         }
 
@@ -107,25 +107,48 @@ namespace CombatAI.Game.Characters.AI
                     AttackPlayer();
                     break;
                 case Data.AI.States.Blocking:
+                    StartCoroutine(Block());
                     break;
                 case Data.AI.States.MantainingDistance:
                     break;
             }
+
+            _performinAction = true;
         }
         #endregion
 
         #region Actions
         private void AttackPlayer()
         {
-            _performinAction = true;
             _aIMovement.currentDirection = playerDirection;
+        }
+
+        private void AttackCheck()
+        {
+            _aIMovement.currentDirection = 0f;
+            _characterAttack.Attack(Data.Attacks.Types.AttackUp);
+            _currentState = Data.AI.States.Thinking;
+            _performinAction = false;
+        }
+
+        private IEnumerator Block()
+        {
+            _characterAttack.StartBlock(Data.Blocks.Types.BlockUp);
+            yield return new WaitForSeconds(Random.Range(_blockDuration.x, _blockDuration.y));
+            _characterAttack.EndBlock(Data.Blocks.Types.BlockUp);
+            _performinAction = false;
+        }
+
+        private void MantainDistance()
+        {
+
         }
         #endregion
 
         #region Resources
         private bool CheckStamina()
         {
-            return _characterStamina.currentStamina > _lowStamina;
+            return _characterStamina.currentStamina > (_characterStamina.maxStamina * (_lowStamina / 10f));
         }
 
         private bool CheckAttackRange()
@@ -150,6 +173,9 @@ namespace CombatAI.Game.Characters.AI
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, _attackDistance);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, _safeDistance);
         }
         #endregion
     }
