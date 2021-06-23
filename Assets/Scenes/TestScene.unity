@@ -2754,7 +2754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &774916265
 Rigidbody2D:
   serializedVersion: 4
@@ -2889,8 +2889,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentAttack: 0
-  _attackDownDuration: 0.5
-  _attackUpDuration: 0.5
   _magnitude: 1
   _roughness: 5
   _fadeInTime: 0.1
@@ -14116,8 +14114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentAttack: 0
-  _attackDownDuration: 0.5
-  _attackUpDuration: 0.5
   _magnitude: 1
   _roughness: 5
   _fadeInTime: 0.1

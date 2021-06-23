@@ -12,6 +12,7 @@ namespace CombatAI.Game.Characters
     {
         [TitleGroup("Class Parameters")]
         [FoldoutGroup("Class Parameters/Current Attack")] [SerializeField] [ReadOnly] [HideLabel] [EnumToggleButtons] private Attacks.Types _currentAttack;
+        [FoldoutGroup("Class Parameters/Current Attack")] [SerializeField] private float _attackForce = 1f;
 
         [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _magnitude = 4f;
         [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _roughness = 4f;
@@ -55,13 +56,11 @@ namespace CombatAI.Game.Characters
         private Animator _animator;
         private CharacterHealth _characterHealth;
         private CharacterStamina _characterStamina;
-        private CharacterMovement _characterMovement;
 
         public virtual void Awake()
         {
             _animator = GetComponentInChildren<Animator>();
             _characterStamina = GetComponent<CharacterStamina>();
-            _characterMovement = GetComponent<CharacterMovement>();
             _characterHealth = GetComponent<CharacterHealth>();
         }
 

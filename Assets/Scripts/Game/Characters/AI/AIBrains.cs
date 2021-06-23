@@ -153,7 +153,12 @@ namespace CombatAI.Game.Characters.AI
                 if (CheckAttackRange() || _playerDirection != _aIMovement.currentDirection)
                 {
                     _aIMovement.currentDirection = 0f;
-                    _characterAttack.Attack(Data.Attacks.Types.AttackUp);
+
+                    float randomAttack = Random.Range(0f, 1f);
+                    if (randomAttack <= 0.5f)
+                        _characterAttack.Attack(Data.Attacks.Types.AttackDown);
+                    else
+                        _characterAttack.Attack(Data.Attacks.Types.AttackUp);
                     performingAction = false;
                 }
             }
