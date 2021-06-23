@@ -34,7 +34,7 @@ namespace CombatAI.Game.Characters
             set
             {
                 _horizontalDirection = value;
-                _animator.SetFloat("Speed", Mathf.Abs(value));
+                _animator.SetFloat("Speed", value != 0f ? Mathf.Sign(value) : 0f);
                 if (value != 0 && grounded && !_dashing)
                 {
                     _visuals.localScale = new Vector3(Mathf.Sign(value), _visuals.localScale.y);
