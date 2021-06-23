@@ -12,8 +12,7 @@ namespace CombatAI.Game.Characters
     {
         [TitleGroup("Class Parameters")]
         [FoldoutGroup("Class Parameters/Current Attack")] [SerializeField] [ReadOnly] [HideLabel] [EnumToggleButtons] private Attacks.Types _currentAttack;
-        [FoldoutGroup("Class Parameters/Attacks Duration")] [SerializeField] private float _attackDownDuration;
-        [FoldoutGroup("Class Parameters/Attacks Duration")] [SerializeField] private float _attackUpDuration;
+        [FoldoutGroup("Class Parameters/Current Attack")] [SerializeField] private float _attackForce = 1f;
 
         [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _magnitude = 4f;
         [FoldoutGroup("Class Parameters/Camera Shake")] [SerializeField] private float _roughness = 4f;
@@ -35,7 +34,6 @@ namespace CombatAI.Game.Characters
             set
             {
                 _attacking = value;
-                _characterMovement.canMove = value;
             }
         }
 
@@ -45,7 +43,6 @@ namespace CombatAI.Game.Characters
             set
             {
                 _blocking = value;
-                _characterMovement.canMove = !value;
                 _characterStamina.canRegenerate = !value;
             }
         } 
@@ -55,16 +52,15 @@ namespace CombatAI.Game.Characters
         private bool _attacking;
         private bool _blockingUp;
         private bool _blockingDown;
+        private string _animatorParameter;
         private Animator _animator;
         private CharacterHealth _characterHealth;
         private CharacterStamina _characterStamina;
-        private CharacterMovement _characterMovement;
 
         public virtual void Awake()
         {
             _animator = GetComponentInChildren<Animator>();
             _characterStamina = GetComponent<CharacterStamina>();
-            _characterMovement = GetComponent<CharacterMovement>();
             _characterHealth = GetComponent<CharacterHealth>();
         }
 
@@ -77,30 +73,36 @@ namespace CombatAI.Game.Characters
             switch (attackType)
             {
                 case Attacks.Types.AttackDown:
-                    StartCoroutine(AttackProcess("AttackingDown", _attackDownDuration));
+                    PerformAttack("AttackingDown");
                     _currentAttack = Attacks.Types.AttackDown;
                     break;
                 case Attacks.Types.AttackUp:
-                    StartCoroutine(AttackProcess("AttackingUp", _attackUpDuration));
+                    PerformAttack("AttackingUp");
                     _currentAttack = Attacks.Types.AttackUp;
                     break;
             }
 
             _characterStamina.UseStamina(_characterStamina.attackCost);
-            CameraShaker.Instance.ShakeOnce(_magnitude, _roughness, _fadeInTime, _fadeOutTime);
         }
 
-        public virtual IEnumerator AttackProcess(string animatorParameter, float attackDuration)
+        public virtual void PerformAttack(string animatorParameter)
         {
             _attacking = true;
             _animator.SetFloat("RandomAttackDown", (int)Random.Range(0, 2));
             _animator.SetBool(animatorParameter, true);
+            _animatorParameter = animatorParameter;
+        }
 
-            yield return new WaitForSeconds(attackDuration);
-
+        public virtual void EndAttack()
+        {
             _attacking = false;
-            _animator.SetBool(animatorParameter, false);
+            _animator.SetBool(_animatorParameter, false);
             _currentAttack = Attacks.Types.None;
+        }
+
+        public virtual void AttackCameraShake()
+        {
+            CameraShaker.Instance.ShakeOnce(_magnitude, _roughness, _fadeInTime, _fadeOutTime);
         }
         #endregion
 

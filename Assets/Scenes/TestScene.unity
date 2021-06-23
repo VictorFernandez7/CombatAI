@@ -2250,7 +2250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 774916267}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &591710247
 MonoBehaviour:
@@ -2814,8 +2814,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2140139527}
-  - {fileID: 591710246}
   - {fileID: 977035799}
+  - {fileID: 591710246}
   m_Father: {fileID: 1347483782}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2889,8 +2889,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentAttack: 0
-  _attackDownDuration: 0.5
-  _attackUpDuration: 0.5
   _magnitude: 1
   _roughness: 5
   _fadeInTime: 0.1
@@ -3603,7 +3601,7 @@ Transform:
   - {fileID: 1711456063}
   - {fileID: 1287035644}
   m_Father: {fileID: 774916267}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &979401616
 GameObject:
@@ -13812,6 +13810,7 @@ GameObject:
   - component: {fileID: 2140139527}
   - component: {fileID: 2140139530}
   - component: {fileID: 2140139529}
+  - component: {fileID: 2140139528}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -13835,6 +13834,18 @@ Transform:
   m_Father: {fileID: 774916267}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2140139528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140139526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7562f253965a8141aa1073148682118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &2140139529
 Animator:
   serializedVersion: 3
@@ -14103,8 +14114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentAttack: 0
-  _attackDownDuration: 0.5
-  _attackUpDuration: 0.5
   _magnitude: 1
   _roughness: 5
   _fadeInTime: 0.1
@@ -14176,6 +14185,7 @@ GameObject:
   - component: {fileID: 5621027182345871261}
   - component: {fileID: 7776102925375902398}
   - component: {fileID: 2575716728624126627}
+  - component: {fileID: 5419930035965908306}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -14183,6 +14193,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5419930035965908306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5419930035965908305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7562f253965a8141aa1073148682118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5621027182345871261
 Transform:
   m_ObjectHideFlags: 0
