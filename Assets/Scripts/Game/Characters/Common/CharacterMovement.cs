@@ -51,8 +51,6 @@ namespace CombatAI.Game.Characters
             {
                 _grounded = value;
                 _animator.SetBool("Grounded", value);
-                /*if (!value)
-                    _visuals.localScale = new Vector3(Mathf.Sign(_rigidbody2D.velocity.x), _visuals.localScale.y);*/
             }
         }
 
@@ -91,19 +89,13 @@ namespace CombatAI.Game.Characters
         public virtual void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
-            {
                 grounded = true;
-                canMove = true;
-            }
         }
 
         public virtual void OnCollisionExit2D(Collision2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
-            {
                 grounded = false;
-                canMove = false;
-            }
         }
 
         #region Horizontal Movement
@@ -119,16 +111,17 @@ namespace CombatAI.Game.Characters
         #endregion
 
         #region Dash
-        public virtual IEnumerator Dash()
+        public virtual void Dash()
         {
             dashing = true;
             canMove = false;
             _rigidbody2D.drag = _dashLinearDrag;
             _rigidbody2D.AddForce(Vector2.right * Mathf.Sign(_visuals.localScale.x) * _dashForce, ForceMode2D.Impulse);
             _characterStamina.UseStamina(_characterStamina.dashCost);
+        }
 
-            yield return new WaitForSeconds(0.75f);
-
+        public virtual void EndDash()
+        {
             dashing = false;
             canMove = true;
         }

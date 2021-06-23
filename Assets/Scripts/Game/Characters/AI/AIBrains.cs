@@ -190,7 +190,7 @@ namespace CombatAI.Game.Characters.AI
                     _characterMovement.Jump();
 
                 else
-                    StartCoroutine(_characterMovement.Dash());
+                    _characterMovement.Dash();
 
                 performingAction = false;
                 _aIMovement.currentDirection = 0f;

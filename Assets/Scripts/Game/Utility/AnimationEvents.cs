@@ -32,5 +32,15 @@ namespace CombatAI.Game.Utility
         {
             _characterAttack.EndAttack();
         }
+
+        public void EndDash()
+        {
+            _characterMovement.EndDash();
+        }
+
+        public void AttackCameraShake()
+        {
+            _characterAttack.AttackCameraShake();
+        }
     }
 }

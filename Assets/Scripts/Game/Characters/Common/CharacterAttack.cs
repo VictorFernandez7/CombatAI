@@ -33,7 +33,6 @@ namespace CombatAI.Game.Characters
             set
             {
                 _attacking = value;
-                _characterMovement.canMove = value;
             }
         }
 
@@ -43,7 +42,6 @@ namespace CombatAI.Game.Characters
             set
             {
                 _blocking = value;
-                _characterMovement.canMove = !value;
                 _characterStamina.canRegenerate = !value;
             }
         } 
@@ -86,7 +84,6 @@ namespace CombatAI.Game.Characters
             }
 
             _characterStamina.UseStamina(_characterStamina.attackCost);
-            CameraShaker.Instance.ShakeOnce(_magnitude, _roughness, _fadeInTime, _fadeOutTime);
         }
 
         public virtual void PerformAttack(string animatorParameter)
@@ -102,6 +99,11 @@ namespace CombatAI.Game.Characters
             _attacking = false;
             _animator.SetBool(_animatorParameter, false);
             _currentAttack = Attacks.Types.None;
+        }
+
+        public virtual void AttackCameraShake()
+        {
+            CameraShaker.Instance.ShakeOnce(_magnitude, _roughness, _fadeInTime, _fadeOutTime);
         }
         #endregion
 

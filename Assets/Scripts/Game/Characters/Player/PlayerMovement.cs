@@ -18,7 +18,7 @@ namespace CombatAI.Game.Characters.Player
 
         private void Update()
         {
-            if (canMove)
+            if (canMove && grounded)
                 Move(horizontalDirection != 0f ? Mathf.Sign(horizontalDirection) : 0f);
 
             if (Input.GetButtonDown("Jump")) // CHECK INPUT
@@ -35,7 +35,7 @@ namespace CombatAI.Game.Characters.Player
                 if (grounded && !dashing && !_characterAttack.attacking && !_characterAttack.blocking) // CHECK CONDITIONS
                 {
                     if (characterStamina.EnoughStamina(characterStamina.dashCost)) // CHECK STAMINA
-                        StartCoroutine(Dash());
+                        Dash();
                 }
             }
         }
