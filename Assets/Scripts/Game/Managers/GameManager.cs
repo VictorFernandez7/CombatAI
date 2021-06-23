@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CombatAI.Game.Managers
 {
-    public class GameManager : Utility.SingletonBehaviour<GameManager>
+    public class GameManager : CombatAI.Utility.SingletonBehaviour<GameManager>
     {
         [Title("References")]
         [SerializeField] private GameObject _pauseMenu;
