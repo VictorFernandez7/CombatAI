@@ -9,10 +9,12 @@ namespace CombatAI.Game.Utility
 {
     public class AnimationEvents : MonoBehaviour
     {
+        CharacterAttack _characterAttack;
         CharacterMovement _characterMovement;
 
         private void Awake()
         {
+            _characterAttack = GetComponentInParent<CharacterAttack>();
             _characterMovement = GetComponentInParent<CharacterMovement>();
         }
 
@@ -24,6 +26,11 @@ namespace CombatAI.Game.Utility
         public void GiveBackInputDetection()
         {
             _characterMovement.canMove = true;
+        }
+
+        public void FinishAttack()
+        {
+            _characterAttack.EndAttack();
         }
     }
 }
